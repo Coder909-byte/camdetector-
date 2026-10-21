@@ -16,10 +16,6 @@
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <!-- TensorFlow.js + BodyPix (body segmentation for clothes detection) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.1/dist/body-pix.min.js"></script>
-
   <!-- App CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -131,6 +127,11 @@
   </div>
 
   <!-- ═══════════════ APP SCRIPTS ═══════════════ -->
+  <!-- TensorFlow Core and BodyPix must load right here -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.1/dist/body-pix.min.js"></script>
+
+  <!-- Custom Scripts -->
   <script src="js/scene.js"></script>
   <script src="js/scanner.js"></script>
   <script src="js/animations.js"></script>
@@ -138,4 +139,3 @@
 
 </body>
 </html>
-
