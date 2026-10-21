@@ -234,8 +234,8 @@ html, body {
 
 /* ═══════════════ HEALTH BAR ═══════════════ */
 #health-bar-container {
-  width: 100%;
-  max-width: 70vw;
+  width: 90vw;
+  max-width: 800px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -282,8 +282,8 @@ html, body {
 
 /* ═══════════════ SCANNER FRAME (Arcade) ═══════════════ */
 .arcade-frame {
-  max-width: 70vw;
-  width: 70vw;
+  max-width: 800px;
+  width: 90vw;
   padding: 0;
   overflow: hidden;
   border-width: 5px;
