@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> GOOSEBUMPS CAM DETECTOR </title>
+  <title> CAM DETECTOR </title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -127,9 +127,11 @@
   </div>
 
   <!-- ═══════════════ APP SCRIPTS ═══════════════ -->
-  <!-- TensorFlow Core and BodyPix must load right here -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.1/dist/body-pix.min.js"></script>
+  <!-- 1. Load stable TensorFlow Core -->
+  <script src="https://unpkg.com/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+  
+  <!-- 2. Load stable Google BodyPix -->
+  <script src="https://unpkg.com/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js"></script>
 
   <!-- Custom Scripts -->
   <script src="js/scene.js"></script>

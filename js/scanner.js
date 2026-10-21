@@ -18,6 +18,12 @@ const Scanner = (() => {
   let loopTimer = null;
 
   async function init(callback) {
+
+    if (typeof bodyPix === 'undefined') {
+        alert("The AI model failed to download. Please check your connection.");
+        updateStatus('⚠ NETWORK BLOCK');
+        return; // This stops the app from crashing
+    }
     onPrediction = callback;
     videoEl = document.getElementById('webcam');
     analysisCanvas = document.getElementById('webcam-canvas');
