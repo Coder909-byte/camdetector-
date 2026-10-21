@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> GOOSEBUMPS CAM DETECTOR </title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- TensorFlow.js + BodyPix (body segmentation for clothes detection) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.1/dist/body-pix.min.js"></script>
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ THREE.JS 3D BACKGROUND ═══════════════ -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ═══════════════ SCANLINE OVERLAY ═══════════════ -->
+  <div id="scanlines"></div>
+
+  <!-- ═══════════════ SCREEN FLASH (for caught state) ═══════════════ -->
+  <div id="screen-flash"></div>
+
+  <!-- ═══════════════ MAIN UI OVERLAY ═══════════════ -->
+  <div id="ui-overlay">
+
+    <!-- ──── TOP HUD BAR ──── -->
+    <header id="hud-top">
+      <div class="hud-left">
+        <span class="pixel-label">LVL</span>
+        <span class="pixel-value" id="level-display">01</span>
+      </div>
+      <h1 id="main-title">
+        <span class="title-glow"> GOOSEBUMPS</span>
+        <span class="title-sub">CAM DETECTOR</span>
+      </h1>
+      <div class="hud-right">
+        <span class="pixel-label">SCORE</span>
+        <span class="pixel-value" id="score-display">0000</span>
+      </div>
+    </header>
+
+    <!-- ──── SCANNER HEALTH BAR ──── -->
+    <div id="health-bar-container" class="pixel-box">
+      <span class="pixel-label health-label">⚡ SCANNER HEALTH</span>
+      <div id="health-bar-track">
+        <div id="health-bar-fill"></div>
+      </div>
+      <span class="pixel-value health-value" id="health-text">100%</span>
+    </div>
+
+    <!-- ──── SCANNER FRAME (Arcade Machine) ──── -->
+    <div id="scanner-frame" class="pixel-box arcade-frame">
+      <div id="arcade-header">
+        <span class="arcade-dot red"></span>
+        <span class="arcade-dot yellow"></span>
+        <span class="arcade-dot green"></span>
+        <span class="arcade-title">⌂ SPECTRAL ANALYZER ⌂</span>
+        <span class="arcade-dot green"></span>
+        <span class="arcade-dot yellow"></span>
+        <span class="arcade-dot red"></span>
+      </div>
+
+      <div id="video-container">
+        <video id="webcam" autoplay playsinline muted></video>
+        <canvas id="webcam-canvas"></canvas>
+
+        <!-- Crosshairs Overlay -->
+        <div id="crosshairs">
+          <div class="cross-h"></div>
+          <div class="cross-v"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="scan-line-anim"></div>
+        </div>
+
+        <!-- Scanning status -->
+        <div id="scan-status">
+          <span id="scan-status-text">AWAITING INPUT...</span>
+        </div>
+      </div>
+
+      <!-- Prediction Bars -->
+      <div id="prediction-bars">
+        <div class="pred-row">
+          <span class="pred-label">CLASS A</span>
+          <div class="pred-track"><div class="pred-fill safe-fill" id="pred-a-fill"></div></div>
+          <span class="pred-pct" id="pred-a-pct">0%</span>
+        </div>
+        <div class="pred-row">
+          <span class="pred-label">CLASS B</span>
+          <div class="pred-track"><div class="pred-fill caught-fill" id="pred-b-fill"></div></div>
+          <span class="pred-pct" id="pred-b-pct">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──── START BUTTON ──── -->
+    <button id="start-btn" class="pixel-btn">
+      <span class="btn-icon">🪙</span>
+      <span class="btn-text">INSERT COIN TO START</span>
+    </button>
+
+    <!-- ──── RESULT POPUP ──── -->
+    <div id="result-popup" class="pixel-box result-box">
+      <div id="result-icon"></div>
+      <div id="result-title"></div>
+      <div id="result-subtitle"></div>
+    </div>
+
+    <!-- ──── BOTTOM HUD ──── -->
+    <footer id="hud-bottom">
+      <span class="blink-text">⚠ what are you looking over here for  ⚠</span>
+    </footer>
+
+  </div>
+
+  <!-- ═══════════════ APP SCRIPTS ═══════════════ -->
+  <script src="js/scene.js"></script>
+  <script src="js/scanner.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
+
